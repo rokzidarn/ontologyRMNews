@@ -1,0 +1,398 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/rzidarn/ontologies/2016/11/untitled-ontology-11#"
+     xml:base="http://www.semanticweb.org/rzidarn/ontologies/2016/11/untitled-ontology-11"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:rm="http://www.semanticweb.org/2016/ontology/rm#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/2016/ontology/rm">
+        <rdfs:comment>Group NLP homework #2 by Rok Zidarn and Miha Pesic. A news ontology. Protege + Python + Fuseki + SPARQL</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#at -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#at">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Time_and_Date"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Time"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#has -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#has">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#News"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Data"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#is -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#is">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Author"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#on -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#on">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Time_and_Date"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Date"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#part_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#part_of">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#News"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Newsgroup"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#posted_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#posted_by">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#News"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Author"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#posted_on -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#posted_on">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#News"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Time_and_Date"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#works_for -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#works_for">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Author"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Organization"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#date -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#date">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Date"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#day -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#day">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Date"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#distribution -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#distribution">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Organization"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#email -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#email">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#first_name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#first_name">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#last_name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#last_name">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#name">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Newsgroup"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Organization"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#number_of_lines -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#number_of_lines">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Data"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#subject -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#subject">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Data"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#summary -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#summary">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Data"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#time -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#time">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Time"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#timezone -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/2016/ontology/rm#timezone">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Time"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#Author -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/2016/ontology/rm#Author">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/2016/ontology/rm#News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#Data -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/2016/ontology/rm#Data">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/2016/ontology/rm#News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#Date -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/2016/ontology/rm#Date"/>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#News -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/2016/ontology/rm#News"/>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#Newsgroup -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/2016/ontology/rm#Newsgroup">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/2016/ontology/rm#News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#Organization -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/2016/ontology/rm#Organization"/>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#Person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/2016/ontology/rm#Person"/>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#Time -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/2016/ontology/rm#Time"/>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#Time_and_Date -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/2016/ontology/rm#Time_and_Date">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/2016/ontology/rm#News"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#Long_term_Human_Missions -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/2016/ontology/rm#Long_term_Human_Missions">
+        <rdf:type rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Data"/>
+        <rm:number_of_lines rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">37</rm:number_of_lines>
+        <rm:subject>Re: Long term Human Missions</rm:subject>
+        <rm:summary>None</rm:summary>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#Robert_Kaye -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/2016/ontology/rm#Robert_Kaye">
+        <rdf:type rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Person"/>
+        <rm:email>rek@siss81</rm:email>
+        <rm:first_name>Robert</rm:first_name>
+        <rm:last_name>Kaye</rm:last_name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#Robert_Kaye_Rush_Presbyterian -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/2016/ontology/rm#Robert_Kaye_Rush_Presbyterian">
+        <rdf:type rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Author"/>
+        <rm:is rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Robert_Kaye"/>
+        <rm:works_for rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Rush_Presbyterian"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#Rush_Presbyterian -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/2016/ontology/rm#Rush_Presbyterian">
+        <rdf:type rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Organization"/>
+        <rm:distribution>Unknown</rm:distribution>
+        <rm:name>Rush-Presbyterian-St. Luke&apos;s Medical Center</rm:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#Sci_Space -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/2016/ontology/rm#Sci_Space">
+        <rdf:type rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Newsgroup"/>
+        <rm:name>sci.space</rm:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#13_31_01_GMT -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/2016/ontology/rm#13_31_01_GMT">
+        <rdf:type rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Time"/>
+        <rm:time>13:31:01</rm:time>
+        <rm:timezone>GMT</rm:timezone>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#28_Apr_1993 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/2016/ontology/rm#28_Apr_1993">
+        <rdf:type rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Date"/>
+        <rm:date>28 Apr 1993</rm:date>
+        <rm:day>Wed</rm:day>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#28_Apr_1993_13_31_01_GMT -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/2016/ontology/rm#28_Apr_1993_13_31_01_GMT">
+        <rdf:type rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Time_and_Date"/>
+        <rm:at rdf:resource="http://www.semanticweb.org/2016/ontology/rm#13_31_01_GMT"/>
+        <rm:on rdf:resource="http://www.semanticweb.org/2016/ontology/rm#28_Apr_1993"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/2016/ontology/rm#61359 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/2016/ontology/rm#61359">
+        <rdf:type rdf:resource="http://www.semanticweb.org/2016/ontology/rm#News"/>
+        <rm:has rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Long_term_Human_Missions"/>
+        <rm:part_of rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Sci_Space"/>
+        <rm:posted_by rdf:resource="http://www.semanticweb.org/2016/ontology/rm#Robert_Kaye_Rush_Presbyterian"/>
+        <rm:posted_on rdf:resource="http://www.semanticweb.org/2016/ontology/rm#28_Apr_1993_13_31_01_GMT"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi -->
+
