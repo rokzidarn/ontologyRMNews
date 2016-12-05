@@ -156,6 +156,30 @@ for f in os.listdir(os.getcwd()+"/news"):
     numberOfLines = getNumberOfLines(text)
     summary = getSummary(text)
 
+    # FUSEKI
+    from rdflib.plugins.stores.sparqlstore import SPARQLStore, SPARQLUpdateStore
+    from rdflib.graph import ConjunctiveGraph
+
+    iri = "http://www.semanticweb.org/2016/ontology/rm"
+    store = SPARQLStore("http://localhost:3030/RM/query")  # queries
+    graph = ConjunctiveGraph(store=store)
+
+    updateStore = SPARQLUpdateStore("http://localhost:3030/RM/update")  # insertion
+    updateGraph = ConjunctiveGraph(store=updateStore)
+
+    updateGraph.update("""
+        PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+        INSERT DATA {
+            onj:Brendi rdf:type onj:Person .
+            onj:Brendi onj:first_name "Brendi" .
+            onj:Brendi onj:last_name "Jovanović Vunjak" .
+            onj:Brendi onj:lives_in onj:Grosuplje .
+        }
+    """)
+
     # ontology
     # News = Author + Time_and_Date + Newsgroup + Data
     # Author = Person + Organization
@@ -166,8 +190,4 @@ for f in os.listdir(os.getcwd()+"/news"):
     # Date = day + date
     # Person = first_name + last_name + email
     # Organization = organization
-
-
-
-
 
