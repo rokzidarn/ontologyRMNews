@@ -149,6 +149,9 @@ for f in os.listdir(os.getcwd()+"/news"):
     last_name = person[1]
     email = person[2]
     person_name = first_name+"_"+last_name
+    distribution = getDistribution(text)
+    organization = getOrganization(text)
+    author = person_name+"_"+organization
 
     subject = getSubject(text)
     numberOfLines = str(getNumberOfLines(text))
@@ -161,9 +164,7 @@ for f in os.listdir(os.getcwd()+"/news"):
     time = timeAndDate[2]
     timezone = timeAndDate[3]
     time_timezone = time+"_"+timezone
-
-    distribution = getDistribution(text)
-    organization = getOrganization(text)
+    date_and_time = date+"_"+time_timezone
 
     # FUSEKI
     from rdflib.plugins.stores.sparqlstore import SPARQLStore, SPARQLUpdateStore
@@ -209,12 +210,19 @@ for f in os.listdir(os.getcwd()+"/news"):
             rm:"""+data+""""" rm:subject """+subject+"""""+^^xsd:string .
             rm:"""+data+""""" rm:number_of_lines """+numberOfLines+"""""+^^xsd:integer .
 
-            
+            rm:"""+author+""""" rdf:type rm:Author .
+            rm:"""+author+""""" rm:is rm:"""+person_name+""""" .
+            rm:"""+author+""""" rm:works_for rm:"""+organization+""""" .
+
+            rm:"""+date_and_time+""""" rdf:type rm:Time_and_Date .
+            rm:"""+date_and_time+""""" rm:at rm:"""+time_timezone+""""" .
+            rm:"""+date_and_time+""""" rm:on rm:"""+date+""""" .
+
+            rm:"""+filename+""""" rdf:type rm:News .
+            rm:"""+filename+""""" rm:posted_on rm:"""+date_and_time+""""" .
+            rm:"""+filename+""""" rm:posted_by rm:"""+author+""""" .
+            rm:"""+filename+""""" rm:has rm:"""+data+""""" .
+            rm:"""+filename+""""" rm:part_of rm:"""+newsgroup+""""" .
         }
     """)
-
-    # ontology
-    # News = Author + Time_and_Date + Newsgroup + Data
-    # Author = Person + Organization
-    # Time_and_Date = Time + Date
 
