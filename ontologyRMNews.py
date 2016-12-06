@@ -140,21 +140,30 @@ for f in os.listdir(os.getcwd()+"/news"):
     text = fileRead(f)
 
     filename = f
+
     newsgroups = getNewsgroups(text)  # list: multiple newsgroups
+    newsgroup = newsgroups[0]
+
     person = getPerson(text)
     first_name = person[0]
     last_name = person[1]
     email = person[2]
+    person_name = first_name+"_"+last_name
+
     subject = getSubject(text)
+    numberOfLines = str(getNumberOfLines(text))
+    summary = getSummary(text)
+    data = numberOfLines+"_"+subject
+
     timeAndDate = getTimeAndDate(text)
     day = timeAndDate[0]
     date = timeAndDate[1]
     time = timeAndDate[2]
     timezone = timeAndDate[3]
+    time_timezone = time+"_"+timezone
+
     distribution = getDistribution(text)
     organization = getOrganization(text)
-    numberOfLines = getNumberOfLines(text)
-    summary = getSummary(text)
 
     # FUSEKI
     from rdflib.plugins.stores.sparqlstore import SPARQLStore, SPARQLUpdateStore
@@ -175,6 +184,31 @@ for f in os.listdir(os.getcwd()+"/news"):
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
         INSERT DATA {
+            rm:"""+person_name+""""" rdf:type rm:Person .
+            rm:"""+person_name+""""" rm:first_name """+first_name+"""""+^^xsd:string
+            rm:"""+person_name+""""" rm:last_name """+last_name+"""""+^^xsd:string
+            rm:"""+person_name+""""" rm:email """+email+"""""+^^xsd:string
+
+            rm:"""+organization+""""" rdf:type rm:Organization .
+            rm:"""+organization+""""" rm:name """+organization+"""""+^^xsd:string .
+            rm:"""+organization+""""" rm:distribution """+distribution+"""""+^^xsd:string .
+
+            rm:"""+time_timezone+""""" rdf:type rm:Time .
+            rm:"""+time_timezone+""""" rm:time """+time+"""""+^^xsd:string .
+            rm:"""+time_timezone+""""" rm:timezone """+timezone+"""""+^^xsd:string .
+
+            rm:"""+date+""""" rdf:type rm:Date .
+            rm:"""+date+""""" rm:date """+date+"""""+^^xsd:string .
+            rm:"""+date+""""" rm:day """+day+"""""+^^xsd:string .
+
+            rm:"""+newsgroup+""""" rdf:type rm:Newsgroup .
+            rm:"""+newsgroup+""""" rm:name """+newsgroup+"""""+^^xsd:string .
+
+            rm:"""+data+""""" rdf:type rm:Data .
+            rm:"""+data+""""" rm:summary """+summary+"""""+^^xsd:string .
+            rm:"""+data+""""" rm:subject """+subject+"""""+^^xsd:string .
+            rm:"""+data+""""" rm:number_of_lines """+numberOfLines+"""""+^^xsd:integer .
+
             
         }
     """)
@@ -183,10 +217,4 @@ for f in os.listdir(os.getcwd()+"/news"):
     # News = Author + Time_and_Date + Newsgroup + Data
     # Author = Person + Organization
     # Time_and_Date = Time + Date
-    # Newsgroup = newsgroups
-    # Data = summary + subject + numberOfLines
-    # Time = time + timezone
-    # Date = day + date
-    # Person = first_name + last_name + email
-    # Organization = organization
 
