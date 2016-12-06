@@ -169,14 +169,13 @@ for f in os.listdir(os.getcwd()+"/news"):
 
     updateGraph.update("""
         PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
         INSERT DATA {
-            onj:Brendi rdf:type onj:Person .
-            onj:Brendi onj:first_name "Brendi" .
-            onj:Brendi onj:last_name "Jovanović Vunjak" .
-            onj:Brendi onj:lives_in onj:Grosuplje .
+            
         }
     """)
 
