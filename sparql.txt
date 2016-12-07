@@ -1,0 +1,38 @@
+SPARQL queries RMNews:
+----------------------
+PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+
+QUERY 1: News data
+
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX owl: <http://www.w3.org/2002/07/owl#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+    SELECT ?subjectd (STR(?news_n) AS ?NAME) (STR(?news_subject) AS ?SUBJECT) (STR(?number_of_lines) AS ?LINES)
+    WHERE {
+        ?subjectn rdf:type rm:Newsgroup .
+        ?subjectn rm:name ?news_n .
+        ?subjectd rdf:type rm:Data .
+        ?subjectd rm:subject ?news_subject .
+        ?subjectd rm:number_of_lines ?number_of_lines
+    }
+
+QUERY2: Distinct authors that have written atleast one message with 15 lines
+
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX owl: <http://www.w3.org/2002/07/owl#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+    SELECT DISTINCT(CONCAT(?fname, ?lname) AS ?Name)
+    WHERE {
+      ?subjectd rdf:type rm:Data .
+      ?subjectd rm:number_of_lines ?number_of_lines .
+      ?subjectp rdf:type rm:Person .
+      ?subjectp rm:first_name ?fname .
+      ?subjectp rm:last_name ?lname .
+      FILTER (
+        ?number_of_lines > 15
+      )
+    }

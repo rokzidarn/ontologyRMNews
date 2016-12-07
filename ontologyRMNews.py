@@ -167,62 +167,53 @@ for f in os.listdir(os.getcwd()+"/news"):
     date_and_time = date+"_"+time_timezone
 
     # FUSEKI
+    from SPARQLWrapper import SPARQLWrapper, JSON
     from rdflib.plugins.stores.sparqlstore import SPARQLStore, SPARQLUpdateStore
     from rdflib.graph import ConjunctiveGraph
+    from rdflib import URIRef, Namespace, Literal
 
-    iri = "http://www.semanticweb.org/2016/ontology/rm"
-    store = SPARQLStore("http://localhost:3030/RM/query")  # queries
-    graph = ConjunctiveGraph(store=store)
+    # iri = "http://www.semanticweb.org/2016/ontology/rm"
+    # store = SPARQLStore("http://localhost:3030/RM/query")
+    # graph = ConjunctiveGraph(store=store)
 
-    updateStore = SPARQLUpdateStore("http://localhost:3030/RM/update")  # insertion
+    updateStore = SPARQLUpdateStore("http://localhost:3030/RM/update")
     updateGraph = ConjunctiveGraph(store=updateStore)
 
     updateGraph.update("""
-        PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX owl: <http://www.w3.org/2002/07/owl#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-
+        PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
         INSERT DATA {
-            rm:"""+person_name+""""" rdf:type rm:Person .
-            rm:"""+person_name+""""" rm:first_name """+first_name+"""""+^^xsd:string
-            rm:"""+person_name+""""" rm:last_name """+last_name+"""""+^^xsd:string
-            rm:"""+person_name+""""" rm:email """+email+"""""+^^xsd:string
-
-            rm:"""+organization+""""" rdf:type rm:Organization .
-            rm:"""+organization+""""" rm:name """+organization+"""""+^^xsd:string .
-            rm:"""+organization+""""" rm:distribution """+distribution+"""""+^^xsd:string .
-
-            rm:"""+time_timezone+""""" rdf:type rm:Time .
-            rm:"""+time_timezone+""""" rm:time """+time+"""""+^^xsd:string .
-            rm:"""+time_timezone+""""" rm:timezone """+timezone+"""""+^^xsd:string .
-
-            rm:"""+date+""""" rdf:type rm:Date .
-            rm:"""+date+""""" rm:date """+date+"""""+^^xsd:string .
-            rm:"""+date+""""" rm:day """+day+"""""+^^xsd:string .
-
-            rm:"""+newsgroup+""""" rdf:type rm:Newsgroup .
-            rm:"""+newsgroup+""""" rm:name """+newsgroup+"""""+^^xsd:string .
-
-            rm:"""+data+""""" rdf:type rm:Data .
-            rm:"""+data+""""" rm:summary """+summary+"""""+^^xsd:string .
-            rm:"""+data+""""" rm:subject """+subject+"""""+^^xsd:string .
-            rm:"""+data+""""" rm:number_of_lines """+numberOfLines+"""""+^^xsd:integer .
-
-            rm:"""+author+""""" rdf:type rm:Author .
-            rm:"""+author+""""" rm:is rm:"""+person_name+""""" .
-            rm:"""+author+""""" rm:works_for rm:"""+organization+""""" .
-
-            rm:"""+date_and_time+""""" rdf:type rm:Time_and_Date .
-            rm:"""+date_and_time+""""" rm:at rm:"""+time_timezone+""""" .
-            rm:"""+date_and_time+""""" rm:on rm:"""+date+""""" .
-
-            rm:"""+filename+""""" rdf:type rm:News .
-            rm:"""+filename+""""" rm:posted_on rm:"""+date_and_time+""""" .
-            rm:"""+filename+""""" rm:posted_by rm:"""+author+""""" .
-            rm:"""+filename+""""" rm:has rm:"""+data+""""" .
-            rm:"""+filename+""""" rm:part_of rm:"""+newsgroup+""""" .
-        }
-    """)
-
+            rm:""" + person_name + """ rdf:type rm:Person .
+            rm:""" + person_name + """ rm:first_name """ + first_name + """ .
+            rm:""" + person_name + """ rm:last_name """ + last_name + """ .
+            rm:""" + person_name + """ rm:email """ + email + """  .
+            rm:""" + organization + """ rdf:type rm:Organization .
+            rm:""" + organization + """ rm:name """ + organization + """ .
+            rm:""" + organization + """ rm:distribution """ + distribution + """ .
+            rm:""" + time_timezone + """ rdf:type rm:Time .
+            rm:""" + time_timezone + """ rm:time """ + time + """ .
+            rm:""" + time_timezone + """ rm:timezone """ + timezone + """ .
+            rm:""" + date + """ rdf:type rm:Date .
+            rm:""" + date + """ rm:date """ + date + """ .
+            rm:""" + date + """ rm:day """ + day + """ .
+            rm:""" + newsgroup + """ rdf:type rm:Newsgroup .
+            rm:""" + newsgroup + """ rm:name """ + newsgroup + """ .
+            rm:""" + data + """ rdf:type rm:Data .
+            rm:""" + data + """ rm:summary """ + summary + """ .
+            rm:""" + data + """ rm:subject """ + subject + """ .
+            rm:""" + data + """ rm:number_of_lines """ + numberOfLines + """ .
+            rm:""" + author + """ rdf:type rm:Author .
+            rm:""" + author + """ rm:is rm:""" + person_name + """ .
+            rm:""" + author + """ rm:works_for rm:""" + organization + """ .
+            rm:""" + date_and_time + """ rdf:type rm:Time_and_Date .
+            rm:""" + date_and_time + """ rm:at rm:""" + time_timezone + """ .
+            rm:""" + date_and_time + """ rm:on rm:""" + date + """ .
+            rm:""" + filename + """ rdf:type rm:News .
+            rm:""" + filename + """ rm:posted_on rm:""" + date_and_time + """ .
+            rm:""" + filename + """ rm:posted_by rm:""" + author + """ .
+            rm:""" + filename + """ rm:has rm:""" + data + """ .
+            rm:""" + filename + """ rm:part_of rm:""" + newsgroup + """ .
+        }""")
