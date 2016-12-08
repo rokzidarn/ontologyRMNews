@@ -36,3 +36,52 @@ QUERY2: Distinct authors that have written atleast one message with 15 lines
         ?number_of_lines > 15
       )
     }
+
+
+
+
+
+
+
+
+UPDATED INSERT
+
+"""
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        PREFIX owl: <http://www.w3.org/2002/07/owl#>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+        PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+        INSERT DATA {
+            rm:""", person_name, """ rdf:type rm:Person .
+     
+       rm:""", person_name, """ rm:first_name """, first_name, """ .
+            rm:""", person_name, """ rm:last_name """, last_name, """ .
+            rm:""", person_name, """ rm:email """, email, """  .
+            rm:""", organization, """ rdf:type rm:Organization .
+            rm:""", organization, """ rm:name """, organization, """ .
+            rm:""", organization, """ rm:distribution """, distribution, """ .
+            rm:""", time_timezone, """ rdf:type rm:Time .
+            rm:""", time_timezone, """ rm:time """, time, """ .
+            rm:""", time_timezone, """ rm:timezone """, timezone, """ .
+            rm:""", date, """ rdf:type rm:Date .
+            rm:""", date, """ rm:date """, date, """ .
+            rm:""", date, """ rm:day """, day, """ .
+            rm:""", newsgroup, """ rdf:type rm:Newsgroup .
+            rm:""", newsgroup, """ rm:name """, newsgroup, """ .
+            rm:""", data, """ rdf:type rm:Data .
+            rm:""", data, """ rm:summary """, summary, """ .
+            rm:""", data, """ rm:subject """, subject, """ .
+            rm:""", data, """ rm:number_of_lines """, numberOfLines, """ .
+            rm:""", author, """ rdf:type rm:Author .
+            rm:""", author, """ rm:is rm:""", person_name, """ .
+            rm:""", author, """ rm:works_for rm:""", organization, """ .
+            rm:""", date_and_time, """ rdf:type rm:Time_and_Date .
+            rm:""", date_and_time, """ rm:at rm:""", time_timezone, """ .
+            rm:""", date_and_time, """ rm:on rm:""", date, """ .
+            rm:""", filename, """ rdf:type rm:News .
+            rm:""", filename, """ rm:posted_on rm:""", date_and_time, """ .
+            rm:""", filename, """ rm:posted_by rm:""", author, """ .
+            rm:""", filename, """ rm:has rm:""", data, """ .
+            rm:""", filename, """ rm:part_of rm:""", newsgroup, """ .
+        }"""
