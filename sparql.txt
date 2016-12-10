@@ -4,6 +4,7 @@ PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
 
 QUERY 1: News data
 
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -37,10 +38,67 @@ QUERY2: Distinct authors that have written atleast one message with 15 lines
       )
     }
 
-QUERY3:
+QUERY3: Returns the number of news published on the same day
+
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+    SELECT ?Day (COUNT(?news) AS ?totalNews)
+    WHERE {
+        ?news rdf:type rm:News .
+	?news rm:has ?data .
+        ?news rm:posted_on ?timedate .
+        ?timedate rm:on ?date .
+        ?date rm:day ?Day .
+    } 		
+    GROUP BY ?Day
+
+QUERY4: Returns Name, Newsgroup and Employer info for everyone that works for Microsoft Corporation
+
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX owl: <http://www.w3.org/2002/07/owl#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+    SELECT (CONCAT(?fname," ",?lname) AS ?Name) ?Newsgroup ?Employer
+    WHERE {
+        ?news rdf:type rm:News .
+        ?news rm:part_of ?group .
+        ?group rm:name ?Newsgroup .
+        ?news rm:posted_by ?author .
+        ?author rm:works_for ?employer .
+        ?author rm:is ?authorPerson .
+        ?authorPerson rm:first_name ?fname .
+        ?authorPerson rm:last_name ?lname .
+        ?employer rm:name ?Employer
+        FILTER (
+            ?employer = rm:MicrosoftCorporation
+        )
+    }
+
+QUERY5:Returns Newsgroup, Subject and Day of all news, posted on Sundays
+
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX owl: <http://www.w3.org/2002/07/owl#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+    SELECT ?Newsgroup ?Subject ?Day
+    WHERE {
+        ?news rdf:type rm:News .
+	?news rm:has ?data .
+  	?news rm:part_of ?newsgroup .
+  	?newsgroup rm:name ?Newsgroup .
+	?data rm:subject ?Subject .
+        ?news rm:posted_on ?timedate .
+  	?timedate rm:on ?date .
+  	?date rm:day ?Day .
+  	FILTER(
+  		?Day = "Sun"
+  	)
+    }
