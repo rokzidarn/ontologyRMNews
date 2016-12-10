@@ -1,0 +1,94 @@
+SPARQL INSERTS:
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+INSERT DATA {
+  rm:Elon_Musk rdf:type rm:Person .
+  rm:Elon_Musk rm:first_name "Elon" .
+  rm:Elon_Musk rm:last_name "Musk" .
+  rm:Elon_Musk rm:email "elon@musk.com"  .}
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+INSERT DATA {
+  rm:Tesla rdf:type rm:Organization .
+  rm:Tesla rm:name "Tesla Motors" .
+  rm:Tesla rm:distribution "USA" .}
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+INSERT DATA {
+  rm:Top_Secret rdf:type rm:Data .
+  rm:Top_Secret rm:subject "New technology" .
+  rm:Top_Secret rm:summary "A new car that runs on oxygen" .
+  rm:Top_Secret rm:number_of_lines 200 .}
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+INSERT DATA {
+  rm:Rec_Autos rdf:type rm:Newsgroup .
+  rm:Rec_Autos rm:name "rec.autos" .}
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+INSERT DATA {
+  rm:15_Jan_2017 rdf:type rm:Date .
+  rm:15_Jan_2017 rm:date "15 Jan 2017" .
+  rm:15_Jan_2017 rm:day "Sun" .}
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+INSERT DATA {
+  rm:17_29_23 rdf:type rm:Time .
+  rm:17_29_23 rm:time "17:29:23" .
+  rm:17_29_23 rm:timezone "PST" .}
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rm: <http://www.semanticweb.org/2016/ontology/rm#>
+INSERT DATA {
+  rm:Elon_Musk_Tesla rdf:type rm:Author .
+  rm:Elon_Musk_Tesla rm:is rm:Elon_Musk .
+  rm:Elon_Musk_Tesla rm:works_for rm:Tesla .
+
+  rm:15_Jan_2017_17_29_23_PST rdf:type rm:Time_and_Date .
+  rm:15_Jan_2017_17_29_23_PST rm:at rm:17_29_23 .
+  rm:15_Jan_2017_17_29_23_PST rm:on rm:15_Jan_2017 .
+
+  rm:00010 rdf:type rm:News .
+  rm:00010 rm:posted_on rm:15_Jan_2017_17_29_23_PST .
+  rm:00010 rm:posted_by rm:Elon_Musk_Tesla .
+  rm:00010 rm:has rm:Top_Secret .
+  rm:00010 rm:part_of rm:Rec_Autos .}
